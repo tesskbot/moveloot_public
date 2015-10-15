@@ -1,25 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html>
+<html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Data Science with Move Loot by tesskbot</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
-    <section class="page-header">
-      <h1 class="project-name">Data Science with Move Loot</h1>
-      <h2 class="project-tagline"></h2>
-      <a href="https://github.com/tesskbot/moveloot_public" class="btn">View on GitHub</a>
-      <a href="https://github.com/tesskbot/moveloot_public/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/tesskbot/moveloot_public/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <div class="wrapper">
+      <header>
+        <h1>Data Science with Move Loot</h1>
+        <p></p>
 
-    <section class="main-content">
-      <h1>
+        <p class="view"><a href="https://github.com/tesskbot/moveloot_public">View the Project on GitHub <small>tesskbot/moveloot_public</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/tesskbot/moveloot_public/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/tesskbot/moveloot_public/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/tesskbot/moveloot_public">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
 <a id="data-science-with-move-loot" class="anchor" href="#data-science-with-move-loot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Science with Move Loot</h1>
 
 <p>My Insight Data Science project was a partnership with <a href="https://www.moveloot.com/sf">Move Loot</a>, a local startup that provides an online platform to buy and sell used furniture. I was excited about working with Move Loot for a number of reasons. First, their mission is to promote sustainability by prolonging the life of pieces of furniture, and sustainability is a value I hold dear. Second, Move Loot’s data was complex in space and time, which led to many interesting data science questions that, when solved, would provide immense direct benefits to the business. Third, it provided me an opportunity to learn data mapping techniques (I love maps!).</p>
@@ -31,7 +40,7 @@
 
 <p>Move Loot gave me data for most of their bay area furniture deliveries and pickups since the start of 2015. The first thing I did was to map the spatial characteristics of their customer demand. It should surprise no one that the most active neighborhoods were all in San Francisco.</p>
 
-<p><img src="https://github.com/tesskbot/moveloot_public/blob/master/images/driveregions.png" width="600"></p>
+<p><img src="https://raw.githubusercontent.com/tesskbot/moveloot_public/master/images/driveregions.png" width="600"></p>
 
 <p>Historical business volumes were then used to predict future business volumes.</p>
 
@@ -66,7 +75,7 @@
 
 <p>I built a Dashboard that allows Move Loot to visualize and interact with their historical data, as well as generate predictions for future pickup and delivery volumes in any given area. Here are a couple of screenshots of that dashboard.</p>
 
-<p><img src="/images/historical_data.png" width="300"><img src="/images/prediction.png" width="300"></p>
+<p><img src="https://raw.githubusercontent.com/tesskbot/moveloot_public/master/images/historical_data.png" width="300"><img src="https://raw.githubusercontent.com/tesskbot/moveloot_public/master/images/prediction.png" width="300"></p>
 
 <h2>
 <a id="clustering-analysis" class="anchor" href="#clustering-analysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clustering analysis</h2>
@@ -75,13 +84,13 @@
 
 <p>The drive cost may be an estimate, but it also represents a direct link to Move Loot’s operating costs. I used drive cost values, latitude, and longitude as inputs into a k-means clustering algorithm. The output of k-means, after a bit of manual clean up (a luxury in this instance where there are only around 200 different zip codes), is their bay area market separated into functionally relevant regions:</p>
 
-<p><img src="/images/clustered_regions.png" width="600"></p>
+<p><img src="https://raw.githubusercontent.com/tesskbot/moveloot_public/master/images/clustered_regions.png" width="600"></p>
 
 <p>Domain knowledge of the bay area serves as validation that this clustered map represents logical and useful divisions of the bay area. One clear area where the clustering algorithm is not optimized is in the yellow region above: it covers both San Francisco and Richmond, which are separated by the bay. This is a reminder that even powerful data science techniques benefit from expert eyes.</p>
 
 <p>Important insights can be made from this clustering analysis. For example, here is a graph representing the average travel cost in each region versus the number of visits per week (expressed as a percentage).</p>
 
-<p><img src="/images/cluster_graph.png" width="600"></p>
+<p><img src="https://raw.githubusercontent.com/tesskbot/moveloot_public/master/images/cluster_graph.png" width="600"></p>
 
 <p>It’s cheap for Move Loot to drive to regions in the inner East bay, near the warehouse. It’s a bit more expensive to drive to San Francisco, but there are so many pickups and deliveries there that this cost is quickly recouped. However, in the South bay, for example, it costs a lot of money to drive there AND there isn’t as much demand. In order to make the trip worth the hefty price tag, Move Loot needs to buy and sell as many things as possible in each trip.</p>
 
@@ -91,15 +100,13 @@
 <p>The outputs of the prediction models combined with the intelligent regional clustering will allow Move Loot to make more data-driven business decisions. They can better schedule truck drivers and warehouse staff to match demand, create delivery and pricing schemes that will optimize their resources, decide where to create new warehouses, and plan expansions into new cities.</p>
 
 <p>It was a lot of fun working with Move Loot! It was great to build prediction models that work well even on sparse and stochastic data, and I loved to opportunity to hone my existing data science skills and learn new tools. The most rewarding part was providing a valuable service to a company that I believe in.</p>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/tesskbot/moveloot_public">Data Science with Move Loot</a> is maintained by <a href="https://github.com/tesskbot">tesskbot</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/tesskbot">tesskbot</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
-
-    </section>
-
-  
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
   </body>
 </html>
