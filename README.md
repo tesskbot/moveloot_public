@@ -8,7 +8,7 @@ Move Loot's business is thriving, and they have expanded from the San Francisco 
 
 Move Loot gave me data for most of their bay area furniture deliveries and pickups since the start of 2015. The first thing I did was to map the spatial characteristics of their customer demand. It should surprise no one that the most active neighborhoods were all in San Francisco.
 
-<img src="https://github.com/tesskbot/moveloot_public/blob/master/images/driveregions.png" width="600">
+<img src="https://raw.githubusercontent.com/tesskbot/moveloot_public/master/images/driveregions.png" width="600">
 
 Historical business volumes were then used to predict future business volumes.
 
@@ -38,7 +38,7 @@ Predictions of the pickup, delivery, or pickup and delivery volume can then be g
 
 I built a Dashboard that allows Move Loot to visualize and interact with their historical data, as well as generate predictions for future pickup and delivery volumes in any given area. Here are a couple of screenshots of that dashboard.
 
-<img src="/images/historical_data.png" width="300"><img src="/images/prediction.png" width="300">
+<img src="https://raw.githubusercontent.com/tesskbot/moveloot_public/master/images/historical_data.png" width="300"><img src="https://raw.githubusercontent.com/tesskbot/moveloot_public/master/images/prediction.png" width="300">
 
 ## Clustering analysis
 
@@ -46,13 +46,13 @@ Even though most of their customers are in San Francisco, Move Loot picks up and
 
 The drive cost may be an estimate, but it also represents a direct link to Move Loot’s operating costs. I used drive cost values, latitude, and longitude as inputs into a k-means clustering algorithm. The output of k-means, after a bit of manual clean up (a luxury in this instance where there are only around 200 different zip codes), is their bay area market separated into functionally relevant regions:
 
-<img src="/images/clustered_regions.png" width="600">
+<img src="https://raw.githubusercontent.com/tesskbot/moveloot_public/master/images/clustered_regions.png" width="600">
 
 Domain knowledge of the bay area serves as validation that this clustered map represents logical and useful divisions of the bay area. One clear area where the clustering algorithm is not optimized is in the yellow region above: it covers both San Francisco and Richmond, which are separated by the bay. This is a reminder that even powerful data science techniques benefit from expert eyes.
 
 Important insights can be made from this clustering analysis. For example, here is a graph representing the average travel cost in each region versus the number of visits per week (expressed as a percentage).
 
-<img src="/images/cluster_graph.png" width="600">
+<img src="https://raw.githubusercontent.com/tesskbot/moveloot_public/master/images/cluster_graph.png" width="600">
 
 It’s cheap for Move Loot to drive to regions in the inner East bay, near the warehouse. It’s a bit more expensive to drive to San Francisco, but there are so many pickups and deliveries there that this cost is quickly recouped. However, in the South bay, for example, it costs a lot of money to drive there AND there isn’t as much demand. In order to make the trip worth the hefty price tag, Move Loot needs to buy and sell as many things as possible in each trip.
 
