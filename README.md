@@ -8,7 +8,7 @@ Move Loot's business is thriving, and they have expanded from the San Francisco 
 
 Move Loot gave me data for most of their bay area furniture deliveries and pickups since the start of 2015. The first thing I did was to map the spatial characteristics of their customer demand. It should surprise no one that the most active neighborhoods were all in San Francisco.
 
-<img src="/images/driveregions.png" width="600">
+<img src="https://github.com/tesskbot/moveloot_public/blob/master/images/driveregions.png" width="600">
 
 Historical business volumes were then used to predict future business volumes.
 
