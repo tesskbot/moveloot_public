@@ -18,21 +18,23 @@ For future reference, customers buying furniture are classified by Move Loot as 
 
 ### Model building
 
-People selling furniture have different motivations than those buying furniture. That may sound obvious, but it means that I needed separate predictive models for buyers and sellers. For Move Loot to have maxiumum flexibility in their predictions, I created three models: one that predicts deliveries (customers selling), one that predicts pickups (customers buying), and one that predicts the sum of pickups and deliveries (Move Loot can use this to determine, in aggregate, how many times they will visit a particular area, regardless of whether furniture goes into the truck or out of it).
+People selling furniture have different motivations than those buying furniture. That may sound obvious, but it means that I needed separate predictive models for buyers and sellers. For Move Loot to have maxiumum flexibility in their predictions, I created three models: one that predicts deliveries (customers buying), one that predicts pickups (customers selling), and one that predicts the sum of pickups and deliveries. Move Loot can use the number of total pickups and deliveries to determine, in aggregate, how many times they will visit a particular area, regardless of whether furniture goes into the truck or out of it.
 
 ### Defining a feature space
 
-I knew from exploratory analysis that the number of pickups and deliveries was heavily dependent on the day of the week, and I expected that other temporal features were important, too. I engineered a set of 60 features that could be used to predict demand for buying and selling used furniture. The set of features included the day of the week, the day of the month, the week of the month, whether it was a weekend or a holiday weekend, et cetera, and many combinations of the above.
+I knew from exploratory analysis that the number of pickups and deliveries was heavily dependent on the day of the week, and I expected that other temporal features were important, too. I engineered a set of 60 features that could predict demand for buying and selling used furniture. The set of features included the day of the week, the day of the month, the week of the month, whether it was a weekend or a holiday weekend, et cetera, and many combinations of the above.
 
 For each of my three cases (pickups only, deliveries only, pickups and deliveries), I trained lasso regression models that considered all 60 features. Lasso models are linear models that penalize the size of the regression coefficients. The lasso makes the coefficient of unimportant features drop to zero so that only features that contribute to creating a good fit have any sway on the model output.
 
-Each model was trained on 7 months worth of spatially-aggregated data, from January to July 2015. At the end, each of the three models had its own set of important features. All of them heavily considered the day of the week, as, in general, people preferred to have furniture picked up and delivered on Friday, Saturday, and Sunday. Further, people tended to sell more furniture at the end of the month than the beginning, so the week of the month was an important feature in the pickups model.
+Each model was trained on 7 months worth of spatially-aggregated data, from January to July 2015. Each of the three models had its own set of important features, as determined by the lasso regression. All of them heavily considered the day of the week, as, in general, people preferred to have furniture picked up and delivered on Friday, Saturday, and Sunday. Further, people tended to sell more furniture at the end of the month than the beginning, so the week of the month was an important feature in the pickups model. Many of the combined features were also important, such as whether it was a weekend **and** the last week of the month.  
 
 ### Dynamic model creation
 
-Move Loot needed prediction models that could be applied at all levels of spatial granularity. This meant that the models must be **simple and flexible**. For example, if Move Loot wants to know how many pickups they will have to make in San Francisco's marina district next Monday, a linear regression model will be trained using only the features important for pickups, where the dependent variable (y) is the historical number of pickups in the marina district.
+Move Loot needed prediction models that could be applied at all levels of spatial granularity. This meant that the models must be **fast and flexible**. For example, if Move Loot wants to know how many pickups they will have to make in San Francisco's marina district next Monday, a linear regression model will be trained using only the features previously determined to be important for pickups, where the dependent variable (y) is the historical number of pickups in the marina district.
 
 Predictions of the pickup, delivery, or pickup and delivery volume can then be generated for any individual region or group of regions. These predictions are flexible, fast, easy to understand, and allow Move Loot to plan better for the future.
+
+*Techinical note:* by first using lasso regression to select features and **then** using those features to predict demand in restricted spatial domains, I am making the assumption that the motivations behind demand for furniture pickups/deliveries are the same in every spatial region. This is not necessarily true. However, given my restricted dataset, it was not possible to use lasso regression to predict events in areas with very low event frequency. So, I erred on the side of enforcing periodicity rather than not capturing any periodicity at all. Future iterations of the model could better take spatial differences into account.
 
 ### Dashboard
 
@@ -55,6 +57,10 @@ Important insights can be made from this clustering analysis. For example, here 
 <img src="https://raw.githubusercontent.com/tesskbot/moveloot_public/master/images/cluster_graph.png" width="600">
 
 It’s cheap for Move Loot to drive to regions in the inner East bay, near the warehouse. It’s a bit more expensive to drive to San Francisco, but there are so many pickups and deliveries there that this cost is quickly recouped. However, in the South bay, for example, it costs a lot of money to drive there AND there isn’t as much demand. In order to make the trip worth the hefty price tag, Move Loot needs to buy and sell as many things as possible in each trip.
+
+## Toolkit
+
+I used python's pandas package for data cleaning and processing, scikit learn for k-means clustering and model creation, folium for mapping, and flask and bootstrap to create the dashboard. All the code I wrote for this project was delivered to Move Loot, and a subset of that code is (on github)[https://github.com/tesskbot/moveloot_public]. The slides I created to present this project (are here)[https://tesskbot.github.io/slides]. I loved the opportunity to learn a ton of new things while working on this project, and hope to write future posts describing the more technical details of those tools. 
 
 ## Summary
 
