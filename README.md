@@ -60,7 +60,7 @@ It’s cheap for Move Loot to drive to regions in the inner East bay, near the w
 
 ## Toolkit
 
-I used python's pandas package for data cleaning and processing, scikit learn for k-means clustering and model creation, folium for mapping, and flask and bootstrap to create the dashboard. All the code I wrote for this project was delivered to Move Loot, and a subset of that code is (on github)[https://github.com/tesskbot/moveloot_public]. The slides I created to present this project (are here)[https://tesskbot.github.io/slides]. I loved the opportunity to learn a ton of new things while working on this project, and hope to write future posts describing the more technical details of those tools. 
+I used python's pandas package for data cleaning and processing, scikit learn for k-means clustering and model creation, folium for mapping, and flask and bootstrap to create the dashboard. All the code I wrote for this project was delivered to Move Loot, and a subset of that code is [on github](https://github.com/tesskbot/moveloot_public). The slides I created to present this project [are here](https://tesskbot.github.io/slides). I loved the opportunity to learn a ton of new things while working on this project, and hope to write future posts describing the more technical details of those tools. 
 
 ## Summary
 
